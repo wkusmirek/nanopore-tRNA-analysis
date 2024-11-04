@@ -1,0 +1,31 @@
+ref=~/Nano-tRNAseq/ref/Lys-97.fa
+cd ~/Nano-tRNAseq/test
+bwa index $ref
+mkdir -p bwamem
+
+for f in dorado/hac/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  minimap2 -ax map-ont -k15 $ref <(zcat $f/*q7.fast*.gz|sed 's/U/T/g') -o test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.minimap2_k15.bam test.bam
+  samtools index bwamem/$s.minimap2_k15.bam
+done; date
+
+for f in dorado/fast/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  minimap2 -ax map-ont -k15 $ref <(zcat $f/*q7.fast*.gz|sed 's/U/T/g') -o test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.minimap2_k15.bam test.bam
+  samtools index bwamem/$s.minimap2_k15.bam
+done; date
+
+for f in guppy/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  minimap2 -ax map-ont -k15 $ref <(zcat $f/pass.fastq.gz|sed 's/U/T/g') -o test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.minimap2_k15.bam test.bam
+  samtools index bwamem/$s.minimap2_k15.bam
+done; date

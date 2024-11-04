@@ -1,0 +1,112 @@
+ref=~/Nano-tRNAseq/ref/Lys-97.fa
+cd ~/Nano-tRNAseq/test
+bwa index $ref
+mkdir -p bwamem
+
+for f in dorado/hac/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  bwa mem -W13 -k6 -xont2d $ref <(zcat $f/*q7.fast*.gz|sed 's/U/T/g') -o test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.bwa_mem_w13_k6.bam test.bam
+  samtools index bwamem/$s.bwa_mem_w13_k6.bam
+done; date
+
+for f in dorado/hac/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  bwa mem -W13 -k6 -xont2d -T20 $ref <(zcat $f/*q7.fast*.gz|sed 's/U/T/g') -o test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.bwa_mem_w13_k6_t20.bam test.bam
+  samtools index bwamem/$s.bwa_mem_w13_k6_t20.bam
+done; date
+
+for f in dorado/hac/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  bwa mem -W13 -k6 -xont2d -T10 $ref <(zcat $f/*q7.fast*.gz|sed 's/U/T/g') -o test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.bwa_mem_w13_k6_t10.bam test.bam
+  samtools index bwamem/$s.bwa_mem_w13_k6_t10.bam
+done; date
+
+for f in dorado/hac/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  bwa mem -W9 -k5 -xont2d -T10 $ref <(zcat $f/*q7.fast*.gz|sed 's/U/T/g') -o test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.bwa_mem_w9_k5_t10.bam test.bam
+  samtools index bwamem/$s.bwa_mem_w9_k5_t10.bam
+done; date
+
+for f in dorado/fast/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  bwa mem -W13 -k6 -xont2d $ref <(zcat $f/*q7.fast*.gz|sed 's/U/T/g') -o test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.bwa_mem_w13_k6.bam test.bam
+  samtools index bwamem/$s.bwa_mem_w13_k6.bam
+done; date
+
+for f in dorado/fast/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  bwa mem -W13 -k6 -xont2d -T20 $ref <(zcat $f/*q7.fast*.gz|sed 's/U/T/g') -o test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.bwa_mem_w13_k6_t20.bam test.bam
+  samtools index bwamem/$s.bwa_mem_w13_k6_t20.bam
+done; date
+
+for f in dorado/fast/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  bwa mem -W13 -k6 -xont2d -T10 $ref <(zcat $f/*q7.fast*.gz|sed 's/U/T/g') -o test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.bwa_mem_w13_k6_t10.bam test.bam
+  samtools index bwamem/$s.bwa_mem_w13_k6_t10.bam
+done; date
+
+for f in dorado/fast/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  bwa mem -W9 -k5 -xont2d -T10 $ref <(zcat $f/*q7.fast*.gz|sed 's/U/T/g') -o test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.bwa_mem_w9_k5_t10.bam test.bam
+  samtools index bwamem/$s.bwa_mem_w9_k5_t10.bam
+done; date
+
+for f in guppy/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  bwa mem -W13 -k6 -xont2d $ref <(zcat $f/pass.fastq.gz|sed 's/U/T/g') -o test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.bwa_mem_w13_k6.bam test.bam
+  samtools index bwamem/$s.bwa_mem_w13_k6.bam
+done; date
+
+for f in guppy/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  bwa mem -W13 -k6 -xont2d -T20 $ref <(zcat $f/pass.fastq.gz|sed 's/U/T/g') -o test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.bwa_mem_w13_k6_t20.bam test.bam
+  samtools index bwamem/$s.bwa_mem_w13_k6_t20.bam
+done; date
+
+for f in guppy/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  bwa mem -W13 -k6 -xont2d -T10 $ref <(zcat $f/pass.fastq.gz|sed 's/U/T/g') -o test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.bwa_mem_w13_k6_t10.bam test.bam
+  samtools index bwamem/$s.bwa_mem_w13_k6_t10.bam
+done; date
+
+for f in guppy/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  bwa mem -W9 -k5 -xont2d -T10 $ref <(zcat $f/pass.fastq.gz|sed 's/U/T/g') -o test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.bwa_mem_w9_k5_t10.bam test.bam
+  samtools index bwamem/$s.bwa_mem_w9_k5_t10.bam
+done; date

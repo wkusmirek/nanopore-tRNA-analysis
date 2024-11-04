@@ -1,0 +1,31 @@
+ref=~/Nano-tRNAseq/ref/Lys-97.fa
+cd ~/Nano-tRNAseq/test
+bwa index $ref
+mkdir -p bwamem
+
+for f in dorado/hac/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  bwa bwasw -z10 -a2 -b1 -q2 -r1 $ref <(zcat $f/*q7.fast*.gz|sed 's/U/T/g') > test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.bwa_sw_z10_a2_b1_q2_r1.bam test.bam
+  samtools index bwamem/$s.bwa_sw_z10_a2_b1_q2_r1.bam
+done; date
+
+for f in dorado/fast/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  bwa bwasw -z10 -a2 -b1 -q2 -r1 $ref <(zcat $f/*q7.fast*.gz|sed 's/U/T/g') > test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.bwa_sw_z10_a2_b1_q2_r1.bam test.bam
+  samtools index bwamem/$s.bwa_sw_z10_a2_b1_q2_r1.bam
+done; date
+
+for f in guppy/*/; do
+  s=`basename $f`
+  echo `date` $f $s
+  bwa bwasw -z10 -a2 -b1 -q2 -r1 $ref <(zcat $f/pass.fastq.gz|sed 's/U/T/g') > test.sam
+  samtools view -bS -F 16 -F 256 test.sam > test.bam
+  samtools sort --write-index -o bwamem/$s.bwa_sw_z10_a2_b1_q2_r1.bam test.bam
+  samtools index bwamem/$s.bwa_sw_z10_a2_b1_q2_r1.bam
+done; date
