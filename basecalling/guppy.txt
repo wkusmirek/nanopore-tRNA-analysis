@@ -1,0 +1,3 @@
+docker run --rm -it -v /data:/data -w /data nanozoo/guppy_cpu:5.0.7-1--47b84be guppy_basecaller --config /opt/ont/guppy/data/rna_r9.4.1_70bps_hac.cfg -i /data/control/fast5 -s /data/control/guppy_rna_r9.4.1_70bps_hac
+docker run --rm -it -v /data:/data -w /data nanozoo/guppy_cpu:5.0.7-1--47b84be guppy_basecaller --config /opt/ont/guppy/data/rna_r9.4.1_70bps_hac.cfg -i /data/ncm5u/fast5 -s /data/ncm5u/guppy_rna_r9.4.1_70bps_hac
+docker run --rm -it -v /data:/data -w /data nanozoo/guppy_cpu:5.0.7-1--47b84be guppy_basecaller --config /opt/ont/guppy/data/rna_r9.4.1_70bps_hac.cfg -i /data/ncmm5s2u/fast5 -s /data/ncmm5s2u/guppy_rna_r9.4.1_70bps_hac
