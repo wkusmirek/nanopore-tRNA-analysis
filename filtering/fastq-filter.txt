@@ -1,0 +1,15 @@
+fastq-filter -q 7 -L 200 -o control/dorado_hac_q7.fastq.gz control/dorado_hac.fastq.gz
+fastq-filter -q 7 -L 200 -o ncm5u/dorado_hac_q7.fastq.gz ncm5u/dorado_hac.fastq.gz
+fastq-filter -q 7 -L 200 -o ncm5s2u/dorado_hac_q7.fastq.gz ncm5s2u/dorado_hac.fastq.gz
+
+fastq-filter -q 7 -L 200 -o control/dorado_fast_q7.fastq.gz control/dorado_fast.fastq.gz
+fastq-filter -q 7 -L 200 -o ncm5u/dorado_fast_q7.fastq.gz ncm5u/dorado_fast.fastq.gz
+fastq-filter -q 7 -L 200 -o ncm5s2u/dorado_fast_q7.fastq.gz ncm5s2u/dorado_fast.fastq.gz
+
+fastq-filter -q 7 -L 200 -o control/guppy_pass_q7.fastq.gz control/guppy_pass.fastq.gz
+fastq-filter -q 7 -L 200 -o ncm5u/guppy_pass_q7.fastq.gz ncm5u/guppy_pass.fastq.gz
+fastq-filter -q 7 -L 200 -o ncm5s2u/guppy_pass_q7.fastq.gz ncm5s2u/guppy_pass.fastq.gz
+
+fastq-filter -q 7 -L 200 -o control/guppy_fail_q7.fastq.gz control/guppy_fail.fastq.gz
+fastq-filter -q 7 -L 200 -o ncm5u/guppy_fail_q7.fastq.gz ncm5u/guppy_fail.fastq.gz
+fastq-filter -q 7 -L 200 -o ncm5s2u/guppy_fail_q7.fastq.gz ncm5s2u/guppy_fail.fastq.gz
